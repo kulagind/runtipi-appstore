@@ -1,0 +1,41 @@
+{
+  "$schema": "../dynamic-compose-schema.json",
+  "services": [
+    {
+      "name": "nanomq",
+      "image": "emqx/nanomq:0.23.7-10-slim",
+      "isMain": true,
+      "internalPort": 18083,
+      "addPorts": [
+        {
+          "hostPort": 1883,
+          "containerPort": 1883
+        },
+        {
+          "hostPort": 8083,
+          "containerPort": 8083
+        },
+        {
+          "hostPort": 8883,
+          "containerPort": 8883
+        }
+      ],
+      "environment": {
+        "TZ": "${TZ}",
+        "NANOMQ_BROKER_URL": "nmq-tcp://0.0.0.0:1883"
+      },
+      "volumes": [
+        {
+          "hostPath": "${APP_DATA_DIR}/data",
+          "containerPath": "/etc"
+        }
+      ],
+      "healthCheck": {
+        "interval": "5s",
+        "timeout": "25s",
+        "retries": 5,
+        "test": "/usr/local/nanomq/nanomq --help"
+      }
+    }    
+  ]
+}
