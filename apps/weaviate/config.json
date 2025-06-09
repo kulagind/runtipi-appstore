@@ -1,0 +1,21 @@
+{
+  "$schema": "../app-info-schema.json",
+  "name": "Weaviate",
+  "port": 18083,
+  "available": true,
+  "exposable": true,
+  "dynamic_config": true,
+  "id": "weaviate",
+  "tipi_version": 21,
+  "version": "0.23.7",
+  "categories": ["utilities", "automation"],
+  "description": "Vector database",
+  "short_desc": "Vector database",
+  "author": "EMQ Technologies Co., Ltd.",
+  "source": "https://github.com/weaviate/weaviate",
+  "website": "https://weaviate.io/developers/weaviate",
+  "form_fields": [],
+  "supported_architectures": ["arm64", "amd64"],
+  "created_at": 1727127845000,
+  "updated_at": 1742917543000
+}

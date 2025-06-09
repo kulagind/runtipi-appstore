@@ -1,0 +1,21 @@
+{
+  "$schema": "../app-info-schema.json",
+  "name": "LightRAG",
+  "port": 18085,
+  "available": true,
+  "exposable": true,
+  "dynamic_config": true,
+  "id": "lightrag",
+  "tipi_version": 21,
+  "version": "0.23.7",
+  "categories": ["utilities", "automation"],
+  "description": "LightRag",
+  "short_desc": "LightRag",
+  "author": "EMQ Technologies Co., Ltd.",
+  "source": "https://github.com/HKUDS/LightRAG",
+  "website": "https://github.com/HKUDS/LightRAG",
+  "form_fields": [],
+  "supported_architectures": ["arm64", "amd64"],
+  "created_at": 1727127845000,
+  "updated_at": 1742917543000
+}
