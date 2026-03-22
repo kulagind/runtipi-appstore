@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: postgres
+    environment:
+      - TZ=${TZ}
+      - POSTGRES_DB=${POSTGRES_DB:-tipi}
+      - POSTGRES_USER=${POSTGRES_USER:-tipi}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - 5432:5432
+    volumes:
+      - ${APP_DATA_DIR}/data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-tipi} -d ${POSTGRES_DB:-tipi}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+    networks:
+      - tipi_main_network
+    labels:
+      runtipi.managed: true

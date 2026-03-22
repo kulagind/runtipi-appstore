@@ -1,0 +1,43 @@
+{
+  "$schema": "../app-info-schema.json",
+  "name": "PostgreSQL",
+  "port": 5432,
+  "available": true,
+  "exposable": false,
+  "dynamic_config": true,
+  "id": "postgres",
+  "tipi_version": 1,
+  "version": "17",
+  "categories": ["utilities", "data"],
+  "description": "Powerful, open source object-relational database system.",
+  "short_desc": "Open source relational database",
+  "author": "PostgreSQL Global Development Group",
+  "source": "https://github.com/docker-library/postgres",
+  "website": "https://www.postgresql.org/",
+  "form_fields": [
+    {
+      "type": "text",
+      "label": "Database name",
+      "required": true,
+      "hint": "tipi",
+      "env_variable": "POSTGRES_DB"
+    },
+    {
+      "type": "text",
+      "label": "Database user",
+      "required": true,
+      "hint": "tipi",
+      "env_variable": "POSTGRES_USER"
+    },
+    {
+      "type": "password",
+      "label": "Database password",
+      "required": true,
+      "hint": "Choose a strong password",
+      "env_variable": "POSTGRES_PASSWORD"
+    }
+  ],
+  "supported_architectures": ["arm64", "amd64"],
+  "created_at": 1774183310432,
+  "updated_at": 1774183310432
+}
