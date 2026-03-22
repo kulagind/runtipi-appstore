@@ -2,8 +2,8 @@
   "$schema": "../dynamic-compose-schema.json",
   "services": [
     {
-      "name": "postgres",
-      "image": "postgres:17",
+      "name": "pgvector",
+      "image": "pgvector/pgvector:pg17",
       "isMain": true,
       "internalPort": 5432,
       "addPorts": [
@@ -22,6 +22,10 @@
         {
           "hostPath": "${APP_DATA_DIR}/data",
           "containerPath": "/var/lib/postgresql/data"
+        },
+        {
+          "hostPath": "./init",
+          "containerPath": "/docker-entrypoint-initdb.d"
         }
       ],
       "healthCheck": {

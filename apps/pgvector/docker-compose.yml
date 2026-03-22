@@ -1,7 +1,7 @@
 services:
-  postgres:
-    image: postgres:17
-    container_name: postgres
+  pgvector:
+    image: pgvector/pgvector:pg17
+    container_name: pgvector
     environment:
       - TZ=${TZ}
       - POSTGRES_DB=${POSTGRES_DB:-tipi}
@@ -11,6 +11,7 @@ services:
       - 5432:5432
     volumes:
       - ${APP_DATA_DIR}/data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-tipi} -d ${POSTGRES_DB:-tipi}"]
       interval: 10s
