@@ -5,7 +5,7 @@
       "name": "weaviate",
       "image": "cr.weaviate.io/semitechnologies/weaviate:1.36.6",
       "isMain": true,
-      "internalPort": 18084,
+      "internalPort": 8080,
       "addPorts": [
         {
           "hostPort": 50051,
