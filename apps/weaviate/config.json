@@ -14,7 +14,22 @@
   "author": "Weaviate",
   "source": "https://github.com/weaviate/weaviate",
   "website": "https://weaviate.io/developers/weaviate",
-  "form_fields": [],
+  "form_fields": [
+    {
+      "type": "password",
+      "label": "Weaviate API key(s)",
+      "required": true,
+      "hint": "Comma-separated keys, e.g. key1,key2",
+      "env_variable": "AUTHENTICATION_APIKEY_ALLOWED_KEYS"
+    },
+    {
+      "type": "text",
+      "label": "Weaviate API key user(s)",
+      "required": true,
+      "hint": "Comma-separated users matching key order, e.g. admin,service",
+      "env_variable": "AUTHENTICATION_APIKEY_USERS"
+    }
+  ],
   "supported_architectures": ["arm64", "amd64"],
   "created_at": 1727127845000,
   "updated_at": 1774185570970

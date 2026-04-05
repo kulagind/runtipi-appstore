@@ -1,0 +1,36 @@
+{
+  "$schema": "../app-info-schema.json",
+  "name": "Weaviate UI",
+  "port": 7777,
+  "available": true,
+  "exposable": true,
+  "dynamic_config": true,
+  "id": "weaviate-ui",
+  "tipi_version": 1,
+  "version": "latest",
+  "categories": ["utilities", "data"],
+  "description": "Web UI for browsing and querying Weaviate.",
+  "short_desc": "Web UI for Weaviate",
+  "author": "naaive",
+  "source": "https://github.com/naaive/weaviate-ui",
+  "website": "https://github.com/naaive/weaviate-ui",
+  "form_fields": [
+    {
+      "type": "text",
+      "label": "Weaviate URL",
+      "required": true,
+      "hint": "http://weaviate:8080",
+      "env_variable": "WEAVIATE_URL"
+    },
+    {
+      "type": "password",
+      "label": "Weaviate API key(s)",
+      "required": false,
+      "hint": "Comma-separated keys matching Weaviate config",
+      "env_variable": "WEAVIATE_API_KEYS"
+    }
+  ],
+  "supported_architectures": ["amd64"],
+  "created_at": 1774187000000,
+  "updated_at": 1774187000000
+}

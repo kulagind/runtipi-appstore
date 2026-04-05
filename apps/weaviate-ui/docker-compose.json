@@ -1,0 +1,17 @@
+{
+  "$schema": "../dynamic-compose-schema.json",
+  "services": [
+    {
+      "name": "weaviate-ui",
+      "image": "naaive/weaviate-ui:latest",
+      "isMain": true,
+      "internalPort": 7777,
+      "environment": {
+        "TZ": "${TZ}",
+        "WEAVIATE_URL": "${WEAVIATE_URL:-http://weaviate:8080}",
+        "WEAVIATE_API_KEYS": "${WEAVIATE_API_KEYS:-}"
+      },
+      "volumes": []
+    }
+  ]
+}

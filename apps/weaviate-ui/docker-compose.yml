@@ -1,0 +1,15 @@
+services:
+  weaviate-ui:
+    image: naaive/weaviate-ui:latest
+    container_name: weaviate-ui
+    environment:
+      - TZ=${TZ}
+      - WEAVIATE_URL=${WEAVIATE_URL:-http://weaviate:8080}
+      - WEAVIATE_API_KEYS=${WEAVIATE_API_KEYS:-}
+    ports:
+      - 7777:7777
+    restart: unless-stopped
+    networks:
+      - tipi_main_network
+    labels:
+      runtipi.managed: true
