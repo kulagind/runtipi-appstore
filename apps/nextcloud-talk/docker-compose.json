@@ -1,0 +1,33 @@
+{
+  "$schema": "../dynamic-compose-schema.json",
+  "services": [
+    {
+      "name": "nextcloud-aio-mastercontainer",
+      "image": "ghcr.io/nextcloud-releases/all-in-one:latest",
+      "isMain": true,
+      "internalPort": 8080,
+      "environment": {
+        "TZ": "${TZ}",
+        "NEXTCLOUD_PASSWORD": "${AIO_PASSWORD}",
+        "NC_DOMAIN": "${NC_DOMAIN}",
+        "APACHE_PORT": "11000",
+        "APACHE_IP_BINDING": "0.0.0.0",
+        "NEXTCLOUD_STARTUP_APPS": "spreed",
+        "SKIP_DOMAIN_VALIDATION": "${SKIP_DOMAIN_VALIDATION:-false}",
+        "TALK_PORT": "3478",
+        "WATCHTOWER_DOCKER_SOCKET_PATH": "/var/run/docker.sock"
+      },
+      "volumes": [
+        {
+          "hostPath": "${APP_DATA_DIR}/aio-mastercontainer",
+          "containerPath": "/mnt/docker-aio-config"
+        },
+        {
+          "hostPath": "/var/run/docker.sock",
+          "containerPath": "/var/run/docker.sock",
+          "readOnly": true
+        }
+      ]
+    }
+  ]
+}

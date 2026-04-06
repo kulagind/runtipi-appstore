@@ -1,0 +1,49 @@
+services:
+  nextcloud-aio-mastercontainer:
+    image: ghcr.io/nextcloud-releases/all-in-one:latest
+    container_name: nextcloud-aio-mastercontainer
+    init: true
+    environment:
+      - TZ=${TZ}
+      - NEXTCLOUD_PASSWORD=${AIO_PASSWORD}
+      - NC_DOMAIN=${NC_DOMAIN}
+      - APACHE_PORT=11000
+      - APACHE_IP_BINDING=0.0.0.0
+      - NEXTCLOUD_STARTUP_APPS=spreed
+      - SKIP_DOMAIN_VALIDATION=${SKIP_DOMAIN_VALIDATION:-false}
+      - TALK_PORT=3478
+      - WATCHTOWER_DOCKER_SOCKET_PATH=/var/run/docker.sock
+    volumes:
+      - ${APP_DATA_DIR}/aio-mastercontainer:/mnt/docker-aio-config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - ${APP_PORT}:8080
+    restart: unless-stopped
+    networks:
+      - tipi_main_network
+    labels:
+      # Main
+      traefik.enable: true
+      traefik.http.middlewares.nextcloud-talk-web-redirect.redirectscheme.scheme: https
+      traefik.http.services.nextcloud-talk.loadbalancer.server.port: 8080
+      # Web
+      traefik.http.routers.nextcloud-talk-insecure.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.nextcloud-talk-insecure.entrypoints: web
+      traefik.http.routers.nextcloud-talk-insecure.service: nextcloud-talk-web
+      traefik.http.routers.nextcloud-talk-insecure.middlewares: nextcloud-talk-web-redirect
+      # Websecure
+      traefik.http.routers.nextcloud-talk.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.nextcloud-talk.entrypoints: websecure
+      traefik.http.routers.nextcloud-talk.service: nextcloud-talk-web
+      traefik.http.routers.nextcloud-talk.tls.certresolver: myresolver
+      # Local domain
+      traefik.http.routers.nextcloud-talk-local-insecure.rule: Host(`nextcloud-talk.${LOCAL_DOMAIN}`)
+      traefik.http.routers.nextcloud-talk-local-insecure.entrypoints: web
+      traefik.http.routers.nextcloud-talk-local-insecure.service: nextcloud-talk-web
+      traefik.http.routers.nextcloud-talk-local-insecure.middlewares: nextcloud-talk-web-redirect
+      # Local domain secure
+      traefik.http.routers.nextcloud-talk-local.rule: Host(`nextcloud-talk.${LOCAL_DOMAIN}`)
+      traefik.http.routers.nextcloud-talk-local.entrypoints: websecure
+      traefik.http.routers.nextcloud-talk-local.service: nextcloud-talk-web
+      traefik.http.routers.nextcloud-talk-local.tls: true
+      runtipi.managed: true

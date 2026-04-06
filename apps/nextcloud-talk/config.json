@@ -1,0 +1,44 @@
+{
+  "$schema": "../app-info-schema.json",
+  "name": "Nextcloud Talk (AIO)",
+  "port": 8080,
+  "available": true,
+  "exposable": true,
+  "dynamic_config": true,
+  "id": "nextcloud-talk",
+  "tipi_version": 1,
+  "version": "latest",
+  "categories": ["utilities"],
+  "description": "Nextcloud All-in-One based setup focused on family chat, voice, and video calls.",
+  "short_desc": "Nextcloud AIO for Talk.",
+  "author": "Nextcloud GmbH",
+  "source": "https://github.com/nextcloud/all-in-one",
+  "website": "https://github.com/nextcloud/all-in-one",
+  "form_fields": [
+    {
+      "type": "password",
+      "label": "AIO setup password",
+      "required": true,
+      "min": 12,
+      "max": 128,
+      "env_variable": "AIO_PASSWORD"
+    },
+    {
+      "type": "fqdn",
+      "label": "Public domain for Nextcloud",
+      "required": true,
+      "hint": "Example: cloud.example.com",
+      "env_variable": "NC_DOMAIN"
+    },
+    {
+      "type": "boolean",
+      "label": "Skip domain validation (advanced)",
+      "required": false,
+      "default": false,
+      "env_variable": "SKIP_DOMAIN_VALIDATION"
+    }
+  ],
+  "supported_architectures": ["arm64", "amd64"],
+  "created_at": 1775498719024,
+  "updated_at": 1775499385848
+}
