@@ -1,0 +1,59 @@
+{
+  "$schema": "../app-info-schema.json",
+  "name": "Coturn",
+  "port": 3478,
+  "available": true,
+  "exposable": false,
+  "no_gui": true,
+  "dynamic_config": true,
+  "id": "coturn",
+  "tipi_version": 1,
+  "version": "4.6.3",
+  "categories": ["utilities", "network"],
+  "description": "A free open-source TURN and STUN server for secure and scalable WebRTC connectivity.",
+  "short_desc": "TURN/STUN server for WebRTC.",
+  "author": "coturn",
+  "source": "https://github.com/coturn/coturn",
+  "website": "https://github.com/coturn/coturn",
+  "form_fields": [
+    {
+      "type": "text",
+      "label": "TURN realm",
+      "required": true,
+      "hint": "Example: turn.example.com",
+      "env_variable": "TURN_REALM"
+    },
+    {
+      "type": "fqdnip",
+      "label": "Public server IP or hostname",
+      "required": true,
+      "hint": "Public IP/FQDN used by clients, e.g. 203.0.113.10",
+      "env_variable": "TURN_EXTERNAL_IP"
+    },
+    {
+      "type": "password",
+      "label": "TURN static auth secret",
+      "required": true,
+      "min": 16,
+      "max": 128,
+      "env_variable": "TURN_STATIC_AUTH_SECRET"
+    },
+    {
+      "type": "number",
+      "label": "Relay minimum port",
+      "required": false,
+      "default": 49160,
+      "env_variable": "TURN_MIN_PORT"
+    },
+    {
+      "type": "number",
+      "label": "Relay maximum port",
+      "required": false,
+      "default": 49200,
+      "env_variable": "TURN_MAX_PORT"
+    }
+  ],
+  "supported_architectures": ["arm64", "amd64"],
+  "created_at": 1775492962046,
+  "updated_at": 1775492962046
+}
